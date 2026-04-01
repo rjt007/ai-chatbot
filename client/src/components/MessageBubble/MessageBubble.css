@@ -1,0 +1,99 @@
+.message-bubble {
+  max-width: 80%;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-xl);
+  line-height: 1.7;
+  position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  transition: var(--transition-color);
+}
+
+/* User messages */
+.message-bubble--user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--color-accent), #6d28d9);
+  color: #ffffff;
+  border-bottom-right-radius: var(--radius-sm);
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* Assistant messages — dynamic background from API */
+.message-bubble--assistant {
+  align-self: flex-start;
+  border-bottom-left-radius: var(--radius-sm);
+  animation: slideInLeft 0.4s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* RTL text block (Arabic) */
+.message-rtl {
+  direction: rtl;
+  text-align: right;
+  font-family: var(--font-arabic);
+  font-size: var(--font-size-lg);
+  line-height: 2;
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* LTR translation block */
+.message-ltr {
+  direction: ltr;
+  text-align: left;
+  font-family: var(--font-ui);
+  font-size: var(--font-size-sm);
+  opacity: 0.85;
+  font-style: italic;
+}
+
+/* Rule badge */
+.message-rule-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+  border: 1px solid currentColor;
+}
+
+.message-rule-badge--city-temperature::before { content: '🌡️ '; }
+.message-rule-badge--decimal-number::before { content: '🔢 '; }
+.message-rule-badge--urgency-tone::before { content: '💬 '; }
+
+/* Metadata info */
+.message-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  font-size: var(--font-size-xs);
+  opacity: 0.6;
+}
+
+/* Typing indicator */
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: var(--space-4) var(--space-5);
+  align-self: flex-start;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  background: var(--color-text-muted);
+  border-radius: 50%;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
