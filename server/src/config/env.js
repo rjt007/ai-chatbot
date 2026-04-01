@@ -20,6 +20,7 @@ const config = new Proxy(
         geminiApiKey: () => process.env.GEMINI_API_KEY,
         geminiModel: () => process.env.GEMINI_MODEL || 'gemini-2.5-flash',
         nodeEnv: () => process.env.NODE_ENV || 'development',
+        clientUrl: () => process.env.CLIENT_URL,
       };
       return mapping[prop] ? mapping[prop]() : undefined;
     },

@@ -22,8 +22,16 @@ const app = express();
 
 // Security middleware
 app.use(helmet({ crossOriginResourcePolicy: false }));
+
+// Construct CORS origins whitelist
+const allowedOrigins = [];
+if (config.clientUrl) {
+  // Gracefully strip trailing slashes, as browsers send Origin headers without them!
+  allowedOrigins.push(config.clientUrl.replace(/\/$/, ''));
+}
+
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://ai-chatbot-one-lime-27.vercel.app/'],
+  origin: allowedOrigins,
   credentials: true,
 }));
 
