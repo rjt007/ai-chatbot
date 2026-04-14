@@ -101,12 +101,12 @@ router.post('/login', async (req, res) => {
       });
     }
 
-    // Find user and explicitly select password field
     const user = await User.findOne({ email: email.toLowerCase() }).select('+password');
     if (!user) {
-      return res.status(401).json({
+      return res.status(404).json({
         success: false,
-        error: 'Invalid email or password.',
+        error: 'Account does not exist. Please create an account first.',
+        code: 'ACCOUNT_NOT_FOUND'
       });
     }
 

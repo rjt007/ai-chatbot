@@ -59,8 +59,14 @@ export default function LoginPage() {
         await login(formData.email.trim().toLowerCase(), formData.password);
       }
     } catch (err) {
-      const message = err.response?.data?.error || 'An error occurred. Please try again.';
-      setServerError(message);
+      const errorData = err.response?.data;
+      if (errorData?.code === 'ACCOUNT_NOT_FOUND') {
+        setIsRegister(true);
+        setServerError(errorData.error);
+      } else {
+        const message = errorData?.error || 'An error occurred. Please try again.';
+        setServerError(message);
+      }
     } finally {
       setIsSubmitting(false);
     }
